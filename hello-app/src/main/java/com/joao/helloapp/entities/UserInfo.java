@@ -1,9 +1,15 @@
 package com.joao.helloapp.entities;
 
 
+import javax.validation.constraints.NotNull;
+
+
 public class UserInfo {
 
+    @NotNull
     private String userName;
+
+    @NotNull
     private String userPassword;
 
     public UserInfo() {

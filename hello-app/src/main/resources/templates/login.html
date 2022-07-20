@@ -12,20 +12,47 @@
 </head>
 <body class="container">
 <h1 class="py-5">Hello App</h1>
-<form class="col card p-3 mb-5" method="post" th:action="@{/login}" th:object="${userInfo}">
+<form class="col card p-3 mb-5" method="post" th:action="@{/login}" th:object="${userInfo}" novalidate>
     <div class="form-group">
-        <label for="userName">User Name</label>
-        <input class="form-control" id="userName" placeholder="Enter User Name" required
+        <label for="validationCustom01">User Name</label>
+        <input class="form-control"  id="validationCustom01" placeholder="Enter User Name" required
                th:field="*{userName}"
                type="text"/>
+        <div class="invalid-feedback">
+            User Name Required!
+        </div>
     </div>
     <div class="form-group">
         <label for="userPassword">Password</label>
         <input class="form-control" id="userPassword" placeholder="" required
                th:field="*{userPassword}"
                type="password"/>
+        <div class="invalid-feedback">
+            Password Required!
+        </div>
     </div>
     <input class="btn btn-primary" type="submit" value="Login">
 </form>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('col card p-3 mb-5');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
 </body>
 </html>
